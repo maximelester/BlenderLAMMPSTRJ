@@ -12,7 +12,7 @@ import numpy as np
 Imports a trajectory file (lammpstrj) and generates
 a numpy array of the form:
 
-    - self.atoms[i] = [[id, type, x, y, z], ...]
+    - self.atoms[i] = [[id, type, x, y, z], ...] (i is the frame id)
 
 '''
 
@@ -91,7 +91,7 @@ class Trajectory:
                 indices_coord0.append(i+1)
         indices_coord1.append(-1) # adds the latest coord1 index (last line)
 
-        # looping every coordinate index (makes the atoms superarray)
+        # looping every coordinate index (makes the atoms array)
         for i0, i1 in zip(indices_coord0, indices_coord1):
             temp = []
             for i in range(i0, i1):
@@ -403,14 +403,14 @@ def Select(name):
 
 DeleteAllObjects()
 
-# choosing the path
+# choosing the path (
 
-path = '/Users/max/Desktop/Work/LAMMPS/simulations/graphene/graphene/v2/dump.lammpstrj'
+path = './dump.lammpstrj' 
 
 # execution
 
 T = Trajectory(path=path)
 T.Initialize()
-T.SetPrimitive(n=1)
-T.SkipTimestep(n=1)
+T.SetPrimitive(n=1) # better set n = 1, and modify primitive object if finer object required
+T.SkipTimestep(n=1) # handles 100s of timesteps fine, but in case of super large dump file this may be required
 T.SetInstances()
