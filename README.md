@@ -15,7 +15,8 @@ Disclaimer: this script not guaranteed to work, and is far from being optimized.
 - Collections are created automatically. Primitive objects are created into "Atoms" collection, and are instanced in "Instances" collection.
 - There are as many (primtitive) atoms as there are types in the lammpstrj file.
 - Each (primitive) atom is assigned a new material called atom {i}.
-- The dump trajectory file must be of the form:
+- The atom types must be a number.
+- The dump trajectory file must be of the following form:
 ```
 ITEM: TIMESTEP
 0
